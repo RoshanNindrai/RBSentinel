@@ -32,7 +32,19 @@ To enable handlers the appdelegate needs to have the following line
 [Sentinel handleWatchKitExtensionRequest:userInfo reply:reply];
 ```
 
-For example if the resource type is post, then sentinel looks for a PostHandler class, and fires  get, post, update, remove methods. A typical handler looks like
+For example if the resource type is post, then sentinel looks for a PostHandler class, and fires either get, post, update, remove methods. A typical request looks like
+
+```
+[self.sentinel performRequestofType:GET forResource:@"post" withParameters:@{@"1":@"2"} andCompletionHander:^(id response) {
+        NSLog(@"RESPONSE %@", response);
+    }];
+
+```
+
+The above request invokes the post method with PostHander class. The following is the way how Sentinel resolves resource to handlers.
+
+Post => PostHandler
+message => MessageHandler
 
 ```
 @interface PostHandler : NSObject<SentinelHandlerProtocol>
