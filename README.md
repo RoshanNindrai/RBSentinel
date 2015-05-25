@@ -11,6 +11,14 @@ RBSentinel helps is filling the communication gap between the applewatch and the
 
 RBSentinel was inspired by <a href="https://github.com/mutualmobile/MMWormhole">MMWormhole</a>, with a way to perfom CRUD operations over a specific resource. Sentinel has the ability to listen to updates on specific resource. 
 
+Initialization
+
+```
+self.sentinel = [[Sentinel alloc] initWithGroupIdentifier:@"group.sentinel"];
+```
+
+with groupIdentifier being the app groups identifier
+
 To add a listener to a specific resource
 ```
 [self.sentinel addListenerForResource:@"message" withCompletionHandler:^(id response) {
