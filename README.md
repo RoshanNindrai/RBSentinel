@@ -93,6 +93,9 @@ message => MessageHandler
 }
 ```
 
+#TODO
+1. Looking into more cleaner Handler implementation
+
 # Lincense
 
 The MIT License (MIT)
