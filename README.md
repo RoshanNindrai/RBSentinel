@@ -2,6 +2,13 @@
 
 RBSentinel helps is filling the communication gap between the applewatch and the parent application. It opens up a REST based interface to handle information needed by the watchapp.
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/RoshanNindrai/RBSentinel/master/sentinel.gif?token=ADUjbOmsarofVeQbbK5LYyR5gxtHTf7Sks5VbaZCwA%3D%3D" width=400px height=400px />
+</p>
+<p align="center">
+<img src="https://raw.githubusercontent.com/RoshanNindrai/RBSentinel/master/sentinel_rest.gif?token=ADUjbOUVOonZz4nzL2aGx79L2HMnRTieks5VbabwwA%3D%3D" width=660px height=300px />
+</p>
+
 #Installation
 
 1. RBSentinel can be added to your project manually by adding the RBSentinel.h and .m to the project folder.
