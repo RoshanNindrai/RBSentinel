@@ -5,9 +5,9 @@
 //  Created by Roshan Balaji Nindrai SenthilNathan on 5/16/15.
 //  Copyright (c) 2015 Roshan Balaji Nindrai SenthilNathan. All rights reserved.
 //
-#import "Sentinel.h"
+#import  "Sentinel.h"
 #include <CoreFoundation/CoreFoundation.h>
-#import <WatchKit/WatchKit.h>
+#import  <WatchKit/WatchKit.h>
 
 @interface NSString (Sentinel)
 
@@ -104,6 +104,15 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
     return sharedDock;
 }
 
++(void)handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void (^)(NSDictionary *))reply {
+    
+    [[self dock] fullfillRequestofType:[userInfo objectForKey:KSENTINELREQUESTTYPE]
+                           forResource:[userInfo objectForKey:KSENTINELREQUESTRESOURCE]
+                        withParameters:[userInfo objectForKey:KSENTINELREQUESTPARAMETER]
+                   andCompletionHander:reply];
+    
+    
+}
 
 
 #pragma mark accesors / mutators
@@ -135,15 +144,16 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
     }
 }
 
-+(void)handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void (^)(NSDictionary *))reply {
+-(void)fileForResource:(NSURL *)fileURL {
     
-    [[self dock] fullfillRequestofType:[userInfo objectForKey:KSENTINELREQUESTTYPE]
-                         forResource:[userInfo objectForKey:KSENTINELREQUESTRESOURCE]
-                      withParameters:[userInfo objectForKey:KSENTINELREQUESTPARAMETER]
-                 andCompletionHander:reply];
-    
-    
+    if(_fileURL != fileURL) {
+        
+        _fileURL = [fileURL URLByAppendingPathComponent:KSENTINELIDENTIFIER];
+        
+    }
 }
+
+#pragma mark listeners
 
 -(void)addListenerForResource:(NSString *)resource
         withCompletionHandler:(void (^)(id response))completionHandler {
@@ -155,6 +165,23 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
     
     [listeners addObject:completionHandler];
     [self.listenersCallbacks setObject:listeners forKey:resource];
+    
+    [self subscribeToNotificationForIdentifier:resource];
+    
+}
+
+
+-(void)removeListenersForResource:(NSString *)resource {
+    
+    NSMutableArray *listeners = [self.listenersCallbacks objectForKey:resource];
+    
+    if(listeners != nil)
+        [self.listenersCallbacks setObject:[NSMutableArray new] forKey:resource];
+    
+
+}
+
+-(void)subscribeToNotificationForIdentifier:(NSString *)resource {
     
     CFNotificationCenterRef const notificationCenter = CFNotificationCenterGetDarwinNotifyCenter();
     CFStringRef resourceString = (__bridge CFStringRef)(resource);
@@ -257,6 +284,12 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
     
     NSString *resourceString = [userInfo objectForKey:KSENTINELREQUESTRESOURCE];
     
+    [self fireListenersForResource:resourceString];
+        
+}
+
+-(void)fireListenersForResource:(NSString *)resourceString {
+    
     NSMutableArray *_listenerBlocks = [_listenersCallbacks objectForKey:resourceString];
     
     for(void(^listener)(id response) in _listenerBlocks) {
@@ -267,7 +300,7 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
             listener(response);
         
     }
-        
+    
 }
 
 -(id)responseForResource:(NSString *)resource {
@@ -307,15 +340,6 @@ void darwinNotificationCallback(CFNotificationCenterRef center,
 
 
 # pragma mark helper methods
-
--(void)fileForResource:(NSURL *)fileURL {
-    
-    if(_fileURL != fileURL) {
-        
-        _fileURL = [fileURL URLByAppendingPathComponent:KSENTINELIDENTIFIER];
-        
-    }
-}
 
 -(id<SentinelHandlerProtocol>)getHandlerForResource:(NSString *)resource {
     
