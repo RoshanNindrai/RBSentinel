@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
 
   s.name            = 'RBSentinel'
-  s.version         = '0.1.2'
+  s.version         = '0.1.3'
   s.license         = 'MIT'
-  s.platform        = :ios, '8.0'
+  s.platform        = :ios, '8.2'
 
   s.summary         = 'RBSentinel improves communication gap between the applewatch and the parent application.'
   s.homepage        = 'https://github.com/RoshanNindrai/RBSentinel'

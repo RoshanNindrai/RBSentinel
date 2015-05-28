@@ -1,6 +1,6 @@
 //
-//  Router.m
-//  RBOxygenDemo
+//  RBSentinel.m
+//  RBSentinelDemo
 //
 //  Created by Roshan Balaji Nindrai SenthilNathan on 5/16/15.
 //  Copyright (c) 2015 Roshan Balaji Nindrai SenthilNathan. All rights reserved.
