@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "Sentinel.h"
+#import "RBSentinel.h"
 
 @interface AppDelegate ()
 
@@ -46,7 +46,7 @@
 -(void)application:(UIApplication *)application handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void (^)(NSDictionary *))reply {
     
     
-    [Sentinel handleWatchKitExtensionRequest:userInfo reply:reply];
+    [RBSentinel handleWatchKitExtensionRequest:userInfo reply:reply];
     
 }
 

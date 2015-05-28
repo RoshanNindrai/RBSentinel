@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "Sentinel.h"
+#import "RBSentinel.h"
 
 @interface ViewController ()
 
-@property(nonatomic, strong)Sentinel *sentinel;
+@property(nonatomic, strong)RBSentinel *sentinel;
 @property (weak, nonatomic) IBOutlet UITextField *userInput;
 
 @end
@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.sentinel = [[Sentinel alloc] initWithGroupIdentifier:@"group.sentinel"];
+    self.sentinel = [[RBSentinel alloc] initWithGroupIdentifier:@"group.sentinel"];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

@@ -14,7 +14,7 @@
 		FA97C27F1B121BC6008148F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA97C27E1B121BC6008148F9 /* Images.xcassets */; };
 		FA97C2821B121BC6008148F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA97C2801B121BC6008148F9 /* LaunchScreen.xib */; };
 		FA97C28E1B121BC6008148F9 /* RBSentinelDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA97C28D1B121BC6008148F9 /* RBSentinelDemoTests.m */; };
-		FA97C29E1B121C2C008148F9 /* Sentinel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA97C29D1B121C2C008148F9 /* Sentinel.m */; };
+		FA97C29E1B121C2C008148F9 /* RBSentinel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA97C29D1B121C2C008148F9 /* RBSentinel.m */; };
 		FA97C2AA1B121C90008148F9 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA97C2A91B121C90008148F9 /* InterfaceController.m */; };
 		FA97C2AD1B121C90008148F9 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA97C2AC1B121C90008148F9 /* NotificationController.m */; };
 		FA97C2AF1B121C90008148F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA97C2AE1B121C90008148F9 /* Images.xcassets */; };
@@ -23,7 +23,7 @@
 		FA97C2BD1B121C90008148F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA97C2BC1B121C90008148F9 /* Images.xcassets */; };
 		FA97C2C01B121C90008148F9 /* RBSentinelDemo WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FA97C2A31B121C90008148F9 /* RBSentinelDemo WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FA97C2CB1B121D86008148F9 /* PostHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FA97C2CA1B121D86008148F9 /* PostHandler.m */; };
-		FA97C2CC1B121DAD008148F9 /* Sentinel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA97C29D1B121C2C008148F9 /* Sentinel.m */; };
+		FA97C2CC1B121DAD008148F9 /* RBSentinel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA97C29D1B121C2C008148F9 /* RBSentinel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +78,8 @@
 		FA97C2871B121BC6008148F9 /* RBSentinelDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RBSentinelDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA97C28C1B121BC6008148F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA97C28D1B121BC6008148F9 /* RBSentinelDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBSentinelDemoTests.m; sourceTree = "<group>"; };
-		FA97C29C1B121C2C008148F9 /* Sentinel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sentinel.h; sourceTree = "<group>"; };
-		FA97C29D1B121C2C008148F9 /* Sentinel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sentinel.m; sourceTree = "<group>"; };
+		FA97C29C1B121C2C008148F9 /* RBSentinel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBSentinel.h; sourceTree = "<group>"; };
+		FA97C29D1B121C2C008148F9 /* RBSentinel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBSentinel.m; sourceTree = "<group>"; };
 		FA97C2A31B121C90008148F9 /* RBSentinelDemo WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "RBSentinelDemo WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA97C2A61B121C90008148F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA97C2A71B121C90008148F9 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -224,8 +224,8 @@
 		FA97C29B1B121C0E008148F9 /* RBSentinel */ = {
 			isa = PBXGroup;
 			children = (
-				FA97C29C1B121C2C008148F9 /* Sentinel.h */,
-				FA97C29D1B121C2C008148F9 /* Sentinel.m */,
+				FA97C29C1B121C2C008148F9 /* RBSentinel.h */,
+				FA97C29D1B121C2C008148F9 /* RBSentinel.m */,
 			);
 			path = RBSentinel;
 			sourceTree = "<group>";
@@ -457,7 +457,7 @@
 				FA97C27A1B121BC6008148F9 /* ViewController.m in Sources */,
 				FA97C2771B121BC6008148F9 /* AppDelegate.m in Sources */,
 				FA97C2741B121BC6008148F9 /* main.m in Sources */,
-				FA97C29E1B121C2C008148F9 /* Sentinel.m in Sources */,
+				FA97C29E1B121C2C008148F9 /* RBSentinel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,7 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA97C2CC1B121DAD008148F9 /* Sentinel.m in Sources */,
+				FA97C2CC1B121DAD008148F9 /* RBSentinel.m in Sources */,
 				FA97C2AD1B121C90008148F9 /* NotificationController.m in Sources */,
 				FA97C2AA1B121C90008148F9 /* InterfaceController.m in Sources */,
 			);

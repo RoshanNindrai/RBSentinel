@@ -5,7 +5,7 @@
 //  Created by Roshan Balaji Nindrai SenthilNathan on 5/16/15.
 //  Copyright (c) 2015 Roshan Balaji Nindrai SenthilNathan. All rights reserved.
 //
-#import  "Sentinel.h"
+#import  "RBSentinel.h"
 #include <CoreFoundation/CoreFoundation.h>
 #import  <WatchKit/WatchKit.h>
 
@@ -45,7 +45,7 @@ NSString *const KSENTINELREQUESTPARAMETER = @"parameters";
 NSString *const KSENTINELRESPONSE         = @"parameters";
 NSString *const KSENTINELIDENTIFIER       = @"sentinel";
 
-@interface Sentinel ()
+@interface RBSentinel ()
 
 @property(nonatomic, strong) NSMutableDictionary *routeHandlers;
 @property(nonatomic, strong) NSString  *resourcePath;
@@ -59,7 +59,7 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
 
 @end
 
-@implementation Sentinel
+@implementation RBSentinel
 
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
@@ -96,7 +96,7 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
 
 
 + (instancetype)dock {
-    static Sentinel *sharedDock = nil;
+    static RBSentinel *sharedDock = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedDock = [[self alloc] init];

@@ -7,12 +7,12 @@
 //
 
 #import "InterfaceController.h"
-#import "Sentinel.h"
+#import "RBSentinel.h"
 
 
 @interface InterfaceController()
 
-@property(nonatomic, strong)Sentinel *sentinel;
+@property(nonatomic, strong)RBSentinel *sentinel;
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel *parentAppMessage;
 
 @end
@@ -22,7 +22,7 @@
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
-    self.sentinel = [[Sentinel alloc] initWithGroupIdentifier:@"group.sentinel"];
+    self.sentinel = [[RBSentinel alloc] initWithGroupIdentifier:@"group.sentinel"];
     
     
     __unsafe_unretained typeof(self) weakSelf = self;

@@ -25,7 +25,7 @@
 
 @end
 
-@interface Sentinel : NSObject
+@interface RBSentinel : NSObject
 
 
 typedef enum{
@@ -55,6 +55,8 @@ typedef enum{
 -(void)didUpdateResource:(NSString *)resource withContent:(id)content;
 
 -(void)addListenerForResource:(NSString *)resource withCompletionHandler:(void (^)(id response))completionHandler;
+
+-(void)removeListenersForResource:(NSString *)resource;
 
 @end
 

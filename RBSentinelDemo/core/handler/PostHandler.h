@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Sentinel.h"
+#import "RBSentinel.h"
 
 @interface PostHandler : NSObject<SentinelHandlerProtocol>
 
