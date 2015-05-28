@@ -11,8 +11,12 @@ RBSentinel helps is filling the communication gap between the applewatch and the
 
 #Installation
 
-1. RBSentinel can be added to your project manually by adding the RBSentinel.h and .m to the project folder.
-2. Cocopods
+ RBSentinel can be added to your project manually by adding the RBSentinel.h and .m to the project folder. The prefered installation method is through cocoapods
+
+```
+pod 'RBSentinel'
+
+```
 
 #Usage
 
