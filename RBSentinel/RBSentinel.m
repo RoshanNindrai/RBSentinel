@@ -373,13 +373,13 @@ void darwinNotificationCallback(CFNotificationCenterRef center,
 
 -(NSString *)stringfromRequestType:(SentinelRequestType)requestType {
     
-     return [self.requestStringTypes objectAtIndex:requestType];
+     return [[self.requestStringTypes objectAtIndex:requestType] selectorMethod];
    
 }
 
 -(NSMutableArray *)stringRequestTypes {
     
-    return [@[@"get:", @"post:", @"remove:", @"update:"] mutableCopy];
+    return [@[@"get", @"post", @"remove", @"update"] mutableCopy];
 }
 
 
