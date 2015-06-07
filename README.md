@@ -45,7 +45,7 @@ The above update triggers the listener that was added previously to that specifi
 
 # Handlers
 
-Apart from listeners, Sentinel enables us to perfrom get, post, update, remove operations over a specific resource type.
+Apart from listeners, Sentinel enables us to perfrom get, post, update, remove and custom operations over a specific resource type.
 To enable handlers the appdelegate needs to have the following line
 ```
 [Sentinel handleWatchKitExtensionRequest:userInfo reply:reply];
