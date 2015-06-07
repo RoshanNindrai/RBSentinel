@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name            = 'RBSentinel'
-  s.version         = '0.1.3'
+  s.version         = '0.1.5'
   s.license         = 'MIT'
   s.platform        = :ios, '8.2'
 
