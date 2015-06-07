@@ -46,14 +46,14 @@
 }
 - (IBAction)didtapGet {
     
-    [self.sentinel performRequestofType:GET forResource:@"post" withParameters:@{@"1":@"2"} andCompletionHander:^(id response) {
+    [self.sentinel performRequestofType:@"get" forResource:@"post" withParameters:@{@"1":@"2"} andCompletionHander:^(id response) {
         NSLog(@"RESPONSE %@", response);
     }];
     
 }
 - (IBAction)didTapPost {
     
-    [self.sentinel performRequestofType:POST forResource:@"post" withParameters:@{@"1":@"2"} andCompletionHander:^(id response) {
+    [self.sentinel performRequestofType:@"post" forResource:@"post" withParameters:@{@"1":@"2"} andCompletionHander:^(id response) {
         NSLog(@"RESPONSE %@", response);
     }];
     
@@ -61,7 +61,7 @@
 }
 - (IBAction)didTapRemove {
     
-    [self.sentinel performRequestofType:REMOVE forResource:@"post" withParameters:@{@"1":@"2"} andCompletionHander:^(id response) {
+    [self.sentinel performRequestofType:@"remove" forResource:@"post" withParameters:@{@"1":@"2"} andCompletionHander:^(id response) {
         NSLog(@"RESPONSE %@", response);
     }];
     
@@ -69,7 +69,7 @@
 }
 - (IBAction)didTapUpdate {
     
-    [self.sentinel performRequestofType:UPDATE forResource:@"post" withParameters:@{@"1":@"2"} andCompletionHander:^(id response) {
+    [self.sentinel performRequestofType:@"update" forResource:@"post" withParameters:@{@"1":@"2"} andCompletionHander:^(id response) {
         NSLog(@"RESPONSE %@", response);
     }];
     

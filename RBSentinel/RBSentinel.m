@@ -44,6 +44,7 @@ NSString *const KSENTINELREQUESTRESOURCE  = @"resource";
 NSString *const KSENTINELREQUESTPARAMETER = @"parameters";
 NSString *const KSENTINELRESPONSE         = @"parameters";
 NSString *const KSENTINELIDENTIFIER       = @"sentinel";
+NSString *const KSENTINELERRORDOMAIN      = @"SENTINEL_ERROR";
 
 @interface RBSentinel ()
 
@@ -53,7 +54,6 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
 @property(nonatomic, strong) NSFileManager  *fileManager;
 @property(nonatomic, strong) NSString *groupIdentifier;
 @property(nonatomic, strong) id response;
-@property(nonatomic, strong) NSMutableArray *requestStringTypes;
 @property(nonatomic, strong) NSMutableDictionary *listenersCallbacks;
 @property(nonatomic, strong) BOOL(^handler)(NSDictionary *parameters);
 
@@ -68,8 +68,7 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
     self = [super init];
     
     if(self) {
-        
-        self.requestStringTypes = [self stringRequestTypes];
+    
         self.routeHandlers      = [NSMutableDictionary new];
         self.listenersCallbacks = [NSMutableDictionary new];
         self.fileManager = [NSFileManager new];
@@ -226,12 +225,12 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
     
 }
 
--(void)performRequestofType:(SentinelRequestType)requestType
+-(void)performRequestofType:(NSString*)requestType
                         forResource:(NSString *)resource
              withParameters:(id)parameters andCompletionHander:(void (^) (id response))completionHandler {
     
     resource = [resource capitalizedFirstLetter];
-    NSString *callType = [self stringfromRequestType:requestType];
+    NSString *callType = [requestType selectorMethod];
     [WKInterfaceController openParentApplication:@{KSENTINELREQUESTTYPE:callType,
                                                    KSENTINELREQUESTRESOURCE:resource,
                                                    KSENTINELREQUESTPARAMETER:parameters}
@@ -251,25 +250,21 @@ NSString *const KSENTINELIDENTIFIER       = @"sentinel";
     
     id<SentinelHandlerProtocol> handler = [self getHandlerForResource:resource];
     
+    id response = nil;
+
     if(handler != nil) {
-        
         
         if([handler respondsToSelector:NSSelectorFromString(requestType)]){
             
-            id response = [self invokeMethod:requestType onHandler:handler withParameters:parameters];
-            if(completionHandler)
-                completionHandler(@{KSENTINELRESPONSE:response});
+            response = [self invokeMethod:requestType onHandler:handler withParameters:parameters];
+            
         }
-        else
-            [NSException raise:@"NoHandlerMethodException"
-                        format:@"No %@ method on %@",requestType, [handler class], nil];
-        
-    }
-    else
-        [NSException raise:@"NoHandlerException"
-                    format:@"No handler class for resource %@",resource, nil];
-
     
+    }
+
+    if(completionHandler)
+        completionHandler(@{KSENTINELRESPONSE: response});
+        
     
 }
 
@@ -321,7 +316,8 @@ void darwinNotificationCallback(CFNotificationCenterRef center,
     
     NSString *resourceString = (__bridge NSString *)(name);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:KSENTINELIDENTIFIER object:nil userInfo:@{KSENTINELREQUESTRESOURCE:resourceString}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KSENTINELIDENTIFIER
+                                                        object:nil userInfo:@{KSENTINELREQUESTRESOURCE:resourceString}];
     
 }
 
@@ -336,8 +332,6 @@ void darwinNotificationCallback(CFNotificationCenterRef center,
     
     
 }
-
-
 
 # pragma mark helper methods
 
@@ -371,16 +365,26 @@ void darwinNotificationCallback(CFNotificationCenterRef center,
     
 }
 
--(NSString *)stringfromRequestType:(SentinelRequestType)requestType {
+#pragma marok error messages 
+
+-(NSDictionary *)noHandlerMethodErroruserInfo {
     
-     return [[self.requestStringTypes objectAtIndex:requestType] selectorMethod];
-   
+    return @{
+                                         NSLocalizedDescriptionKey: NSLocalizedString(@"call handler method was unsuccessful.", nil),
+                                         NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Handler method was not found ", nil),
+                                         NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Please check your handler method name", nil)
+                                         };
+    
 }
 
--(NSMutableArray *)stringRequestTypes {
+-(NSDictionary *)noHandlerErroruserInfo {
     
-    return [@[@"get", @"post", @"remove", @"update"] mutableCopy];
+    return @{
+             NSLocalizedDescriptionKey: NSLocalizedString(@"call handler method was unsuccessful.", nil),
+             NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Handler method was not found ", nil),
+             NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Please check your handler method name", nil)
+             };
+    
 }
-
 
 @end

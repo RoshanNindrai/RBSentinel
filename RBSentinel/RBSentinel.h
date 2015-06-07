@@ -27,19 +27,9 @@
 @interface RBSentinel : NSObject
 
 
-typedef enum{
-    
-    GET = 0,
-    POST,
-    REMOVE,
-    UPDATE,
-    
-}SentinelRequestType;
-
-
 -(instancetype)initWithGroupIdentifier:(NSString *)groupIdentifier;
 
--(void)performRequestofType:(SentinelRequestType)requestType
+-(void)performRequestofType:(NSString*)requestType
                         forResource:(NSString *)resource
              withParameters:(id)parameters
         andCompletionHander:(void (^) (id response))completionHandler;
