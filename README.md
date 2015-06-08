@@ -1,6 +1,6 @@
 # RBSentinel
 
-RBSentinel helps is filling the communication gap between the applewatch and the parent application. It opens up a REST based interface to handle information needed by the watchapp.
+RBSentinel helps in improving the communication between the applewatch and the parent application. It opens up a REST based interface to handle information needed by the watchapp.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/RoshanNindrai/RBSentinel/master/sentinel.gif?token=ADUjbOmsarofVeQbbK5LYyR5gxtHTf7Sks5VbaZCwA%3D%3D" width=400px height=400px />
