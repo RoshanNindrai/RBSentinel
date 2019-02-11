@@ -18,7 +18,7 @@ pod 'RBSentinel'
 
 ```
 
-#Usage
+# Usage
 
 RBSentinel was inspired by <a href="https://github.com/mutualmobile/MMWormhole">MMWormhole</a>, with a way to perfom CRUD operations over a specific resource. Sentinel has the ability to listen to updates on specific resource even when the app is not open or in background. 
 
